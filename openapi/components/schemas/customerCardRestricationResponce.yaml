@@ -1,0 +1,35 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      ecommerceAuthorize:
+        type: boolean
+        description: "Indicates whether eCommerce transactions are authorized."
+      ecommerceNonAuthorize:
+        type: boolean
+        description: "Indicates whether eCommerce transactions are not authorized."
+      id:
+        type: integer
+        format: int64
+        description: "A unique identifier for the data object."
+      international:
+        type: boolean
+        description: "Indicates whether international transactions are allowed."
+    required:
+      - ecommerceAuthorize
+      - ecommerceNonAuthorize
+      - id
+      - international
+  responseCode:
+    type: string
+    description: "Code representing the response status."
+    maxLength: 10
+  responseDescription:
+    type: string
+    description: "A descriptive message of the response."
+    maxLength: 255
+required:
+  - data
+  - responseCode
+  - responseDescription

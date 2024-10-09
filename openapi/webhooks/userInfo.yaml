@@ -1,0 +1,16 @@
+post:
+  summary: New user webhook
+  description: Information about a new user in the system.
+  operationId: userInfo
+  tags:
+    - Info
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ..\components\schemas\User.yaml
+  responses:
+    '200':
+      description: Successfully retrieved information about a new user.
+  security:
+    - api_key: []

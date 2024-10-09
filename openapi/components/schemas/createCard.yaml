@@ -1,0 +1,97 @@
+type: object
+properties:
+  folioNumber:
+    type: string
+    description: The folio number which is required.
+  action:
+    type: string
+    description: The action code which is required.
+  cnic:
+    type: string
+    description: The CNIC which is required.
+  cardTitle:
+    type: string
+    description: The title of the cardholder.
+  productCode:
+    type: string
+    description: The product code associated with the card.
+  cardExpiryDate:
+    type: string
+    description: The expiry date of the card in 'YYMM' format.
+  primaryCardcnic:
+    type: string
+    description: The CNIC of the primary cardholder.
+  relation:
+    type: string
+    description: The relation of the cardholder to the primary cardholder.
+  nationalityCode:
+    type: string
+    description: The nationality code of the cardholder.
+  firstname:
+    type: string
+    description: The first name of the cardholder.
+  lastname:
+    type: string
+    description: The last name of the cardholder.
+  companyName:
+    type: string
+    description: The company name of the cardholder.
+  email:
+    type: string
+    description: The email address of the cardholder.
+  motherMaideNname:
+    type: string
+    description: The maiden name of the mother.
+  fatherHusbandName:
+    type: string
+    description: The name of the father or husband.
+  city:
+    type: string
+    description: The city of residence.
+  dateOfBirth:
+    type: string
+    format: date
+    description: The date of birth of the cardholder.
+  profession:
+    type: string
+    description: The profession of the cardholder.
+  gender:
+    type: string
+    description: The gender of the cardholder.
+  mailingAddress:
+    type: string
+    description: The mailing address of the cardholder.
+  homeAddress:
+    type: string
+    description: The home address of the cardholder.
+  officeAddress:
+    type: string
+    description: The office address of the cardholder.
+  homePhone:
+    type: string
+    description: The home phone number of the cardholder.
+  officePhone:
+    type: string
+    description: The office phone number of the cardholder.
+  cell:
+    type: string
+    description: The cell phone number of the cardholder.
+required:
+  - folioNumber
+  - action
+  - cnic
+  - cardTitle
+  - productCode
+  - cardExpiryDate
+  - nationalityCode
+  - firstname
+  - lastname
+  - email
+  - city
+  - dateOfBirth
+  - profession
+  - gender
+  - mailingAddress
+  - homeAddress
+  - officeAddress
+  - cell

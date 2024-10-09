@@ -1,0 +1,28 @@
+post:
+  tags:
+    - GenerateCvc
+  summary: generatecvc
+  description: "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n"
+  operationId: generatecvc
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ..\components\schemas\generateCvc-2.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ..\components\schemas\generateCvc.yaml
+  x-codeSamples:
+    - lang: Curl
+      source:
+        $ref: ../code_samples/Curl/GenerateCvc/post.sh

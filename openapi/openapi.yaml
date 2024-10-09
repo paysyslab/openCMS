@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Open Cms Api
+  license:
+    name: Paysys Labs
+    url: https://www.paysyslabs.com/
+  x-logo:
+    url: dist\logo.png
+    altText: Paysys Labs
+  description: >
+    OpenCMS is a product used for managing card systems. It is designed to be
+    flexible, allowing clients to configure products according to their specific
+    needs. Once the products are set up, clients can define the limits that
+    apply to each product, as well as set fees for events and transactions based
+    on the product’s niche. Major payment schemes like Visa, Mastercard, and UPI
+    can be used to create the cards.
+servers:
+  - url: https://www.paysyslabs.com/api/v1
+    description: Production base URL
+  - url: https://example.com/api/v1
+    description: Example base URL
+security:
+  - bearerAuth: []
+paths:
+  /changeCardStatus:
+    $ref: paths/changeCardStatus.yaml
+  /createCard:
+    $ref: paths/createCard.yaml
+  /getCardsByCustomer:
+    $ref: paths/getCardsByCustomer.yaml
+  /GetCardDetails:
+    $ref: paths/GetCardDetails.yaml
+  /GenerateCvc:
+    $ref: paths/GenerateCvc.yaml
+  /CardTransactionLimits:
+    $ref: paths/CardTransactionLimits.yaml
+  /ChangeCardLimit:
+    $ref: paths/ChangeCardLimit.yaml
+webhooks:
+  userInfo:
+    $ref: webhooks/userInfo.yaml
+components:
+  securitySchemes:
+    main_auth:
+      description: Example description text of the OAuth2 scheme.
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://example.com/api/oauth/dialog
+          scopes:
+            read:users: read user info
+            write:users: modify or remove users
+    api_key:
+      description: Example description text of the API key scheme.
+      type: apiKey
+      in: header
+      name: api_key
+    basic_auth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-tagGroups:
+  - name: General
+    tags:
+      - User
+  - name: Card Request
+    tags:
+      - CardStatus
+      - GetCardsByCustomer
+      - CreateCard
+      - GenerateCvc
+      - GetCardDetails
+      - CardTransactionLimits
+      - ChangeCardLimit

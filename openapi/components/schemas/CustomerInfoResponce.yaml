@@ -1,0 +1,126 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      accountTitle:
+        type: string
+        description: "Title of the customer's account"
+        maxLength: 100
+      city:
+        type: string
+        description: "City of the customer"
+        maxLength: 50
+      code:
+        type: string
+        description: "Customer's unique code"
+        pattern: "^[A-Z0-9]{5,10}$"
+      companyName:
+        type: string
+        description: "Name of the company"
+        maxLength: 100
+      customerMobile:
+        type: string
+        description: "Customer's mobile number"
+        pattern: "^\\+?[1-9]\\d{1,14}$" # Validates international mobile number format
+      customerStatus:
+        type: string
+        description: "Status of the customer"
+        enum: ["Active", "Inactive", "Pending"]
+      dob:
+        type: string
+        description: "Customer's date of birth"
+        format: date
+      email:
+        type: string
+        description: "Customer's email address"
+        format: email
+      fatherName:
+        type: string
+        description: "Father's name of the customer"
+        maxLength: 100
+      fullName:
+        type: string
+        description: "Full name of the customer"
+        maxLength: 100
+      gender:
+        type: string
+        description: "Gender of the customer"
+        enum: ["Male", "Female", "Other"]
+      homeAddress:
+        type: string
+        description: "Home address of the customer"
+        maxLength: 255
+      homePhone:
+        type: string
+        description: "Home phone number of the customer"
+        pattern: "^\\+?[1-9]\\d{1,14}$" # Validates international phone number format
+      identifier:
+        type: string
+        description: "Unique identifier for the customer"
+        pattern: "^[A-Z0-9]{8,20}$"
+      mailingAddress:
+        type: string
+        description: "Mailing address of the customer"
+        maxLength: 255
+      mobileNumber:
+        type: string
+        description: "Customer's mobile number"
+        pattern: "^\\+?[1-9]\\d{1,14}$" # Validates international mobile number format
+      motherName:
+        type: string
+        description: "Mother's name of the customer"
+        maxLength: 100
+      nationalityCode:
+        type: string
+        description: "Nationality code of the customer"
+        pattern: "^[A-Z]{2,3}$" # Typically 2 or 3 character country codes
+      officeAddress:
+        type: string
+        description: "Office address of the customer"
+        maxLength: 255
+      officePhone:
+        type: string
+        description: "Office phone number of the customer"
+        pattern: "^\\+?[1-9]\\d{1,14}$" # Validates international phone number format
+      profession:
+        type: string
+        description: "Profession of the customer"
+        maxLength: 100
+    required:
+      - accountTitle
+      - fullName
+      - customerMobile
+      - dob
+      - identifier
+  responseCode:
+    type: string
+    description: "Code representing the response status"
+    maxLength: 10
+  responseDescription:
+    type: string
+    description: "Description of the response"
+    maxLength: 255
+  rrn:
+    type: string
+    description: "Retrieval Reference Number"
+    pattern: "^[A-Z0-9]{12,20}$"
+  stan:
+    type: string
+    description: "System Trace Audit Number"
+    pattern: "^[0-9]{6}$"
+  txndate:
+    type: string
+    description: "Transaction date"
+    format: date
+  txntime:
+    type: string
+    description: "Transaction time"
+    pattern: "^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$" # Validates time in HH:mm:ss format
+required:
+  - responseCode
+  - responseDescription
+  - rrn
+  - stan
+  - txndate
+  - txntime

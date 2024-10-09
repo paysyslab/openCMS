@@ -1,0 +1,117 @@
+type: object
+properties:
+  responseCode:
+    type: string
+    example: '00'
+    description: Response code, where '00' means success
+  responseDescription:
+    type: string
+    example: Processed OK
+    description: A brief description of the response
+  data:
+    type: object
+    properties:
+      cardAccountDetail:
+        type: object
+        properties:
+          cardAttributes:
+            type: object
+            properties:
+              branchCode:
+                type: string
+                example: null
+                description: Branch code (if available)
+              cardName:
+                type: string
+                example: AakashMatlani
+                description: The name on the card
+              product:
+                type: object
+                properties:
+                  productName:
+                    type: string
+                    example: Virtual Debit Card
+                    description: Name of the product associated with the card
+              cardStatus:
+                type: string
+                example: '02'
+                description: Status of the card (e.g., 02 for Active)
+              expiryDate:
+                type: string
+                example: '2211'
+                description: Expiry date of the card in YYMM format
+              cardNumber:
+                type: string
+                example: '5325442500000865'
+                description: Masked or full card number
+              primaryCardNumber:
+                type: string
+                example: null
+                description: Primary card number (if available)
+              deliveryStatus:
+                type: string
+                example: null
+                description: Delivery status of the card (if applicable)
+              internationalTransaction:
+                type: boolean
+                example: true
+                description: Indicates if international transactions are enabled
+              issueDate:
+                type: string
+                format: date-time
+                example: '2022-10-17 18:13:44.016'
+                description: Date and time when the card was issued
+              internationalTransactionEndDate:
+                type: string
+                example: null
+                description: End date for international transaction availability
+              internationalTransactionStartDate:
+                type: string
+                example: null
+                description: Start date for international transaction availability
+          accountAttributes:
+            type: array
+            description: List of accounts associated with the card
+            items:
+              type: object
+              properties:
+                accountNumber:
+                  type: string
+                  example: '000001234567'
+                  description: Account number associated with the card
+                status:
+                  type: string
+                  example: Active
+                  description: Status of the associated account
+                title:
+                  type: string
+                  example: AakashMatlani
+                  description: Title or name associated with the account
+      limits:
+        type: array
+        description: Transaction limits associated with the card
+        items:
+          type: object
+          properties:
+            cardId:
+              type: integer
+              example: 138
+              description: Card ID associated with the limits
+            availableLimit:
+              type: number
+              format: float
+              example: 150000
+              description: Available limit for the transaction
+            transactionName:
+              type: string
+              example: Withdrawal
+              description: Type of transaction (e.g., Withdrawal, POS Purchase, E-Commerce)
+            totalLimit:
+              type: number
+              format: float
+              example: 150000
+              description: Total limit for the transaction
+required:
+  - responseCode
+  - responseDescription
+  - data

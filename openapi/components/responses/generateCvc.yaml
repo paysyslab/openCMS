@@ -1,0 +1,25 @@
+type: object
+properties:
+  responseCode:
+    type: string
+    example: "00"
+    description: "Response code, where '00' means success"
+  responseDescription:
+    type: string
+    example: "Processed OK"
+    description: "A brief description of the response"
+  data:
+    type: object
+    properties:
+      cardNumber:
+        type: string
+        example: "5325442500000915"
+        description: "Masked or full card number"
+      cvc:
+        type: string
+        example: null
+        description: "Card Verification Code (if available)"
+      expiry:
+        type: string
+        example: "2207"
+        description: "Expiry date of the card in YYMM format"

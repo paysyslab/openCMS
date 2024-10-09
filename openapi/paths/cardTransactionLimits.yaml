@@ -1,0 +1,43 @@
+post:
+  tags:
+    - CardTransactionLimits
+  summary: CardTransactionLimits
+  description: "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n"
+  operationId: cardtransactionlimits
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ..\components\schemas\CardTransactionLimits-responce.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - cardId
+            - cardtatus
+          properties:
+            cardId:
+              type: string
+              description: The cardId  which is required.
+            cardtatus:
+              type: string
+              description: The status  which is required.
+        example:
+          cardId: '175'
+          cardtatus: ACTIVE
+    description: Example request payload containing RRN and STN fields.
+    required: true
+  x-codeSamples:
+    - lang: Curl
+      source:
+        $ref: ../code_samples/Curl/CardTransactionLimits/post.sh

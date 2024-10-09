@@ -1,0 +1,38 @@
+type: object
+properties:
+  responseCode:
+    type: string
+    description: The code representing the status of the response.
+    example: '00'
+  responseDescription:
+    type: string
+    description: A description of the response status.
+    example: Processed OK
+  data:
+    type: object
+    properties:
+      createdDate:
+        type: string
+        format: date-time
+        description: The date and time when the data was created.
+        example: '2022-07-01 12:07:30.77'
+      cardName:
+        type: string
+        description: The name associated with the card.
+        example: Test
+      maskedCardNumber:
+        type: string
+        description: The masked version of the card number for security.
+        example: 55195*****000156
+      cardStatus:
+        type: string
+        description: The current status of the card.
+        example: Active
+      mobileNumber:
+        type: string
+        description: The mobile number associated with the cardholder.
+        example: '923142280111'
+      expiryDate:
+        type: string
+        description: The expiry date of the card in MMYY format.
+        example: '2207'

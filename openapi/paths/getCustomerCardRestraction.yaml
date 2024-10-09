@@ -1,0 +1,44 @@
+post:
+  tags:
+    - CustomerCardRestraction
+  summary: getCustomerCardRestraction
+  description: "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n"
+  operationId: getcustomercardrestraction
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ..\components\schemas\customerCardRestricationResponce.yaml
+    '400':
+      description: Unauthorized
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - cardId
+            - cnic
+            - customerCode
+          properties:
+            cardId:
+              type: string
+              description: The cardId  which is optional.
+            cnic:
+              type: string
+              description: The cnic  which is required.
+            customerCode:
+              type: string
+              description: The customerCode  which is required.
+        example:
+          cnic: '010123'
+          cardId: '010123010123'
+          customerCode: '010123010123'
+    description: Example request payload containing RRN and STN fields.
+    required: true
+  x-codeSamples:
+    - lang: C#
+      source:
+        $ref: ../code_samples/C_sharp/echo/post.cs

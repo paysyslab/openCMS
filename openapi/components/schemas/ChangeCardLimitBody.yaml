@@ -1,0 +1,28 @@
+type: object
+properties:
+  cardNo:
+    type: string
+    description: Masked card number for security.
+    example: xxxxxx
+  customerCnic:
+    type: string
+    description: Customer's national identification number in the format 'xxxxx-xxxxxxx-x'.
+    example: 41302-32123212
+  accountNo:
+    type: string
+    description: Account number associated with the card.
+    example: '123456'
+  cardExpiry:
+    type: string
+    description: Card expiry date in the format 'YYMM'.
+    example: '2207'
+  newLimit:
+    type: number
+    description: The new card limit to be set.
+    example: 12345
+required:
+  - cardNo
+  - customerCnic
+  - accountNo
+  - cardExpiry
+  - newLimit

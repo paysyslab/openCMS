@@ -1,0 +1,33 @@
+type: object
+properties:
+  folioNumber:
+    type: string
+    description: Unique identifier for the folio.
+    example: '000001111120'
+  cardId:
+    type: string
+    description: Card ID associated with the account.
+    example: '191'
+  cnic:
+    type: string
+    description: Customer's national identification number.
+    example: '4230194806411'
+  customerCode:
+    type: string
+    description: Unique code identifying the customer.
+    example: '0000000000000090'
+  maskCardNumber:
+    type: string
+    description: Masked credit card number for security.
+    example: 53254*****000915
+  productcode:
+    type: string
+    description: Product code associated with the card.
+    example: '07'
+required:
+  - folioNumber
+  - cardId
+  - cnic
+  - customerCode
+  - maskCardNumber
+  - productcode

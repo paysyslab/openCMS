@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Paysys Labs | OpenCMS ReDoc</title>
+    <!-- needed for adaptive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!--
+    ReDoc uses font options from the parent element
+    So override default browser styles
+    -->
+    <style>
+      .fixed-dropdown {
+        position: fixed;
+        top: 5%; /* Adjust the top position as needed */
+        left: 58%; /* Adjust the left position as needed */
+        z-index: 1000; /* Ensure the dropdown stays on top of other elements */
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    {{{redocHead}}}
+  </head>
+  <body>
+    <!-- Version dropdown -->
+    <select id="versionDropdown" class="fixed-dropdown">
+      <option value="openapi">Version 1.0</option>
+     
+      <!-- Add more version options as needed -->
+    </select>
+    <redoc id="redoc"></redoc>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+
+    <script>
+
+      // Get the selected version from the dropdown
+      const versionDropdown = document.getElementById('versionDropdown');
+
+      // Initialize Redoc for the initial version
+      const initialVersion = versionDropdown.value;
+      const initialSpecUrl = `dist/${initialVersion}.json`;
+      const redocElement = document.getElementById('redoc');
+      redocElement.setAttribute('spec-url', initialSpecUrl);
+      Redoc.init(initialSpecUrl, {}, redocElement);
+
+      versionDropdown.addEventListener('change', function() {
+        const selectedVersion = versionDropdown.value;
+        // Load the OpenAPI spec for the selected version
+        const specUrl = `dist/${selectedVersion}.json`;
+        // Get the Redoc element
+        const redocElement = document.getElementById('redoc');
+        // Set the spec-url attribute dynamically
+        redocElement.setAttribute('spec-url', specUrl);
+        // Reload Redoc
+        Redoc.init(specUrl, {}, redocElement);
+      });
+
+    </script>
+  </body>
+</html>

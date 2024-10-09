@@ -1,0 +1,15 @@
+type: object
+properties:
+  responceCode:
+    type: number
+    description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+    example: 0
+  responseDescription:
+    type: string
+    description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+    example: Processed Ok
+required:
+  - rrn
+  - stan
+  - txndate
+  - txntime

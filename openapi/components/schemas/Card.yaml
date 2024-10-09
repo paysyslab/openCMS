@@ -1,0 +1,14 @@
+type: object
+properties:
+  cnic:
+    type: string
+    description: "The cnic  which is required."
+  folioNumber:
+    type: string
+    description: "The folioNumber  which is required."
+ 
+required:
+  - rrn
+  - stan
+  - txndate
+  - txntime

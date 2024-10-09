@@ -1,0 +1,55 @@
+type: object
+properties:
+  responceCode:
+    type: number
+    description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.
+    example: 0
+  responseDescription:
+    type: string
+    description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.
+    example: Processed Ok
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        customerCode:
+          type: string
+          description: Unique code representing the customer.
+          example: '0000000000000003'
+        cardNumber:
+          type: string
+          description: The number of the card.
+          example: '2205820600000012'
+        cardStatus:
+          type: string
+          description: The status of the card.
+          example: ACTIVE
+        cardName:
+          type: string
+          description: The name associated with the card.
+          example: SYED M. RAZA ABBAS
+        productName:
+          type: string
+          description: The name of the product linked to the card.
+          example: PayPak
+        productCode:
+          type: string
+          description: The code of the product.
+          example: '06'
+        cardStatusCode:
+          type: string
+          description: Code representing the status of the card.
+          example: '01'
+        expiryDate:
+          type: string
+          description: The expiry date of the card in MMYY format.
+          example: '2504'
+        cardId:
+          type: integer
+          description: Unique identifier for the card.
+          example: 3
+        accountNumber:
+          type: string
+          description: The account number associated with the card.
+          example: '73264'

@@ -1,0 +1,37 @@
+post:
+  tags:
+    - GetCardsByCustomer
+  summary: GetCardStatus
+  description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+  operationId: getcardsbycustomer
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ..\components\schemas\GetCardByCustomer.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - cnic
+          properties:
+            cnic:
+              type: string
+        example:
+          cnic: '4230194806487'
+    description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+    required: true
+  x-codeSamples:
+    - lang: Curl
+      source:
+        $ref: ../code_samples/Curl/getCardsByCustomer/post.sh

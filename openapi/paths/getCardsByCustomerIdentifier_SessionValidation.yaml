@@ -1,0 +1,30 @@
+post:
+  tags:
+    - GetCardsByCustomerIdentifier
+  summary: getCardsByCustomerIdentifier_SessionValidation
+  description: "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n"
+  operationId: getCardsBycustomeridentifiersessionvalidation
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: string
+            properties:
+              cardId:
+                type: string
+                example: ok
+    '400':
+      description: Unauthorized
+  requestBody:
+    description: Example request payload containing CNIC and folio number fields.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ..\components\schemas\Card.yaml
+  x-codeSamples:
+    - lang: C#
+      source:
+        $ref: ../code_samples/C_sharp/echo/post.cs
