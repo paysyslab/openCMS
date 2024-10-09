@@ -1,0 +1,896 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "V2.4",
+    "title": "Open Cms Api",
+    "license": {
+      "name": "Paysys Labs",
+      "url": "https://www.paysyslabs.com/"
+    },
+    "x-logo": {
+      "url": "dist\\logo.png",
+      "altText": "Paysys Labs"
+    },
+    "description": "OpenCMS is a product used for managing card systems. It is designed to be flexible, allowing clients to configure products according to their specific needs. Once the products are set up, clients can define the limits that apply to each product, as well as set fees for events and transactions based on the product’s niche. Major payment schemes like Visa, Mastercard, and UPI can be used to create the cards.\n"
+  },
+  "servers": [
+    {
+      "url": "https://www.paysyslabs.com/api/v1",
+      "description": "Production base URL"
+    },
+    {
+      "url": "https://example.com/api/v1",
+      "description": "Example base URL"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "Example actions on user accounts."
+    }
+  ],
+  "paths": {
+    "/changeCardStatus": {
+      "openapi": "3.0.3",
+      "info": {
+        "title": "Digital Bank API",
+        "version": "1.1",
+        "description": "Open Connect is a modern, integrated, and highly scalable payment switch platform with an efficient service-oriented architecture approach. The platform is completely independent and has a multiplayer design. The core technology for messaging is based on Queue manager, which is a highly scalable MQ system, and can be horizontally scaled to run on a cluster of machines. The deployment can be done in a Virtual environment as well as a containerized environment.",
+        "license": {
+          "name": "Paysys Labs",
+          "url": "https://www.paysyslabs.com/"
+        }
+      },
+      "paths": {
+        "/changeCardStatus": {
+          "post": {
+            "tags": [
+              "CardStatus"
+            ],
+            "summary": "ChangeCardStatus",
+            "description": "In this scenario, the customer wants to unlink his/her selected account, assuming the customer is already linked to the account with a RAAST ID.\n\nThe reason for performing this operation may be any of the following:\n- Customer wants to link another account with the current institution.\n- Customer wants to link another account with another RAAST participant.",
+            "operationId": "changeCardStatus",
+            "requestBody": {
+              "description": "Example request payload for changing card status.",
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "required": [
+                      "cardId",
+                      "cnic",
+                      "customerCode",
+                      "status"
+                    ],
+                    "properties": {
+                      "cardId": {
+                        "type": "string",
+                        "description": "The card ID is required."
+                      },
+                      "cnic": {
+                        "type": "string",
+                        "description": "The CNIC is required."
+                      },
+                      "customerCode": {
+                        "type": "string",
+                        "description": "The customer code is required."
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "The status is required."
+                      }
+                    }
+                  },
+                  "example": {
+                    "cardId": "65",
+                    "cnic": "4230194806487",
+                    "customerCode": "0000000000000031",
+                    "status": "01"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "../components/schemas/CardResponse.yaml"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "403": {
+                "description": "Forbidden"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            },
+            "x-codeSamples": [
+              {
+                "lang": "java",
+                "source": {
+                  "$ref": "../code_samples/java/echo/post.java"
+                }
+              },
+              {
+                "lang": "C#",
+                "source": {
+                  "$ref": "../code_samples/C_sharp/echo/post.cs"
+                }
+              }
+            ]
+          }
+        },
+        "/createCard": {
+          "post": {
+            "tags": [
+              "CreateCard"
+            ],
+            "summary": "CreateCard",
+            "description": "In this scenario, the customer wants to unlink his/her selected account, assuming the customer is already linked to the account with a RAAST ID.\n\nThe reason for performing this operation may be any of the following:\n- Customer wants to link another account with the current institution.\n- Customer wants to link another account with another RAAST participant.",
+            "operationId": "createCard",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../components/schemas/createCard.yaml"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "../components/schemas/CardResponse.yaml"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "403": {
+                "description": "Forbidden"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            },
+            "x-codeSamples": [
+              {
+                "lang": "java",
+                "source": {
+                  "$ref": "../code_samples/java/echo/post.java"
+                }
+              },
+              {
+                "lang": "C#",
+                "source": {
+                  "$ref": "../code_samples/C_sharp/echo/post.cs"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/createCard": {
+      "openapi": "3.0.3",
+      "info": {
+        "title": "Digital Bank API",
+        "version": "1.1",
+        "description": "Open Connect is a modern, integrated, and highly scalable payment switch platform with an efficient service-oriented architecture approach. The platform is completely independent and has a multiplayer design. The core technology for messaging is based on Queue manager, which is a highly scalable MQ system, and can be horizontally scaled to run on a cluster of machines. The deployment can be done in a Virtual environment as well as a containerized environment.",
+        "license": {
+          "name": "Paysys Labs",
+          "url": "https://www.paysyslabs.com/"
+        }
+      },
+      "paths": {
+        "/changeCardStatus": {
+          "post": {
+            "tags": [
+              "CardStatus"
+            ],
+            "summary": "ChangeCardStatus",
+            "description": "In this scenario, the customer wants to unlink his/her selected account, assuming the customer is already linked to the account with a RAAST ID.\n\nThe reason for performing this operation may be any of the following:\n- Customer wants to link another account with the current institution.\n- Customer wants to link another account with another RAAST participant.",
+            "operationId": "changeCardStatus",
+            "requestBody": {
+              "description": "Example request payload for changing card status.",
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "required": [
+                      "cardId",
+                      "cnic",
+                      "customerCode",
+                      "status"
+                    ],
+                    "properties": {
+                      "cardId": {
+                        "type": "string",
+                        "description": "The card ID is required."
+                      },
+                      "cnic": {
+                        "type": "string",
+                        "description": "The CNIC is required."
+                      },
+                      "customerCode": {
+                        "type": "string",
+                        "description": "The customer code is required."
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "The status is required."
+                      }
+                    }
+                  },
+                  "example": {
+                    "cardId": "65",
+                    "cnic": "4230194806487",
+                    "customerCode": "0000000000000031",
+                    "status": "01"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "../components/schemas/CardResponse.yaml"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "403": {
+                "description": "Forbidden"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            },
+            "x-codeSamples": [
+              {
+                "lang": "java",
+                "source": {
+                  "$ref": "../code_samples/java/echo/post.java"
+                }
+              },
+              {
+                "lang": "C#",
+                "source": {
+                  "$ref": "../code_samples/C_sharp/echo/post.cs"
+                }
+              }
+            ]
+          }
+        },
+        "/createCard": {
+          "post": {
+            "tags": [
+              "CreateCard"
+            ],
+            "summary": "CreateCard",
+            "description": "In this scenario, the customer wants to unlink his/her selected account, assuming the customer is already linked to the account with a RAAST ID.\n\nThe reason for performing this operation may be any of the following:\n- Customer wants to link another account with the current institution.\n- Customer wants to link another account with another RAAST participant.",
+            "operationId": "createCard",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../components/schemas/createCard.yaml"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "../components/schemas/CardResponse.yaml"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized"
+              },
+              "403": {
+                "description": "Forbidden"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            },
+            "x-codeSamples": [
+              {
+                "lang": "java",
+                "source": {
+                  "$ref": "../code_samples/java/echo/post.java"
+                }
+              },
+              {
+                "lang": "C#",
+                "source": {
+                  "$ref": "../code_samples/C_sharp/echo/post.cs"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/getCardsByCustomer": {
+      "post": {
+        "tags": [
+          "GetCardsByCustomer"
+        ],
+        "summary": "GetCardStatus",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "operationId": "getcardsbycustomer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCardByCustomer"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "cnic"
+                ],
+                "properties": {
+                  "cnic": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "cnic": "4230194806487"
+              }
+            }
+          },
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+          "required": true
+        },
+        "x-codeSamples": [
+          {
+            "lang": "java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.nio.charset.StandardCharsets;\n\npublic class EchoApiExample {\n    public static void main(String[] args) {\n        try {\n            // Create the HttpClient\n            HttpClient client = HttpClient.newHttpClient();\n\n            // Define the request payload\n            String jsonPayload = \"{\\\"message\\\": \\\"Hello World!\\\"}\";\n\n            // Create the HttpRequest\n            HttpRequest request = HttpRequest.newBuilder()\n                    .uri(URI.create(\"https://api.example.com/v1/echo\")) // Replace with the actual API URL\n                    .header(\"Content-Type\", \"application/json\")\n                    .POST(HttpRequest.BodyPublishers.ofString(jsonPayload, StandardCharsets.UTF_8))\n                    .build();\n\n            // Send the request and get the response\n            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());\n\n            // Check if the status code is 201 Created\n            if (response.statusCode() == 201) {\n                // Success\n                System.out.println(\"Success: Resource created.\");\n                System.out.println(\"Response body: \" + response.body());\n            } else {\n                // Failure - Check for errors\n                System.out.println(\"Error: Status code \" + response.statusCode());\n                System.out.println(\"Response body: \" + response.body());\n            }\n        } catch (Exception e) {\n            // Exception handling in case of network or other issues\n            e.printStackTrace();\n        }\n    }\n}\n"
+          },
+          {
+            "lang": "C#",
+            "source": "API.v1.Echo echo = new API.v1.Echo();\necho.message = \"Hello World!\");\nEchoResponse response = echo.post();\nif (response.statusCode == HttpStatusCode.Created)\n{\n  // Success\n}\nelse\n{\n  // Something wrong -- check response for errors\n  Console.WriteLine(response.getRawResponse());\n}\n"
+          }
+        ]
+      }
+    },
+    "/GetCardDetails": {
+      "post": {
+        "tags": [
+          "GetCardDetails"
+        ],
+        "summary": "GetCardDetails",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "getcarddetails",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getCardDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "description": "Example request payload containing CNIC and folio number fields.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "panNumber"
+                ],
+                "properties": {
+                  "panNumber": {
+                    "type": "string",
+                    "description": "The panNumber  which is required."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.nio.charset.StandardCharsets;\n\npublic class EchoApiExample {\n    public static void main(String[] args) {\n        try {\n            // Create the HttpClient\n            HttpClient client = HttpClient.newHttpClient();\n\n            // Define the request payload\n            String jsonPayload = \"{\\\"message\\\": \\\"Hello World!\\\"}\";\n\n            // Create the HttpRequest\n            HttpRequest request = HttpRequest.newBuilder()\n                    .uri(URI.create(\"https://api.example.com/v1/echo\")) // Replace with the actual API URL\n                    .header(\"Content-Type\", \"application/json\")\n                    .POST(HttpRequest.BodyPublishers.ofString(jsonPayload, StandardCharsets.UTF_8))\n                    .build();\n\n            // Send the request and get the response\n            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());\n\n            // Check if the status code is 201 Created\n            if (response.statusCode() == 201) {\n                // Success\n                System.out.println(\"Success: Resource created.\");\n                System.out.println(\"Response body: \" + response.body());\n            } else {\n                // Failure - Check for errors\n                System.out.println(\"Error: Status code \" + response.statusCode());\n                System.out.println(\"Response body: \" + response.body());\n            }\n        } catch (Exception e) {\n            // Exception handling in case of network or other issues\n            e.printStackTrace();\n        }\n    }\n}\n"
+          },
+          {
+            "lang": "C#",
+            "source": "API.v1.Echo echo = new API.v1.Echo();\necho.message = \"Hello World!\");\nEchoResponse response = echo.post();\nif (response.statusCode == HttpStatusCode.Created)\n{\n  // Success\n}\nelse\n{\n  // Something wrong -- check response for errors\n  Console.WriteLine(response.getRawResponse());\n}\n"
+          }
+        ]
+      }
+    }
+  },
+  "webhooks": {
+    "userInfo": {
+      "post": {
+        "summary": "New user webhook",
+        "description": "Information about a new user in the system.",
+        "operationId": "userInfo",
+        "tags": [
+          "Info"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved information about a new user."
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "main_auth": {
+        "description": "Example description text of the OAuth2 scheme.",
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:users": "read user info",
+              "write:users": "modify or remove users"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "description": "Example description text of the API key scheme.",
+        "type": "apiKey",
+        "in": "header",
+        "name": "api_key"
+      },
+      "basic_auth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "GetCardByCustomer": {
+        "type": "object",
+        "properties": {
+          "responceCode": {
+            "type": "number",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.",
+            "example": 0
+          },
+          "responseDescription": {
+            "type": "string",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.",
+            "example": "Processed Ok"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "customerCode": {
+                  "type": "string",
+                  "description": "Unique code representing the customer.",
+                  "example": "0000000000000003"
+                },
+                "cardNumber": {
+                  "type": "string",
+                  "description": "The number of the card.",
+                  "example": "2205820600000012"
+                },
+                "cardStatus": {
+                  "type": "string",
+                  "description": "The status of the card.",
+                  "example": "ACTIVE"
+                },
+                "cardName": {
+                  "type": "string",
+                  "description": "The name associated with the card.",
+                  "example": "SYED M. RAZA ABBAS"
+                },
+                "productName": {
+                  "type": "string",
+                  "description": "The name of the product linked to the card.",
+                  "example": "PayPak"
+                },
+                "productCode": {
+                  "type": "string",
+                  "description": "The code of the product.",
+                  "example": "06"
+                },
+                "cardStatusCode": {
+                  "type": "string",
+                  "description": "Code representing the status of the card.",
+                  "example": "01"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "description": "The expiry date of the card in MMYY format.",
+                  "example": "2504"
+                },
+                "cardId": {
+                  "type": "integer",
+                  "description": "Unique identifier for the card.",
+                  "example": 3
+                },
+                "accountNumber": {
+                  "type": "string",
+                  "description": "The account number associated with the card.",
+                  "example": "73264"
+                }
+              }
+            }
+          }
+        }
+      },
+      "getCardDetail": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "description": "The code representing the status of the response.",
+            "example": "00"
+          },
+          "responseDescription": {
+            "type": "string",
+            "description": "A description of the response status.",
+            "example": "Processed OK"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "createdDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date and time when the data was created.",
+                "example": "2022-07-01 12:07:30.77"
+              },
+              "cardName": {
+                "type": "string",
+                "description": "The name associated with the card.",
+                "example": "Test"
+              },
+              "maskedCardNumber": {
+                "type": "string",
+                "description": "The masked version of the card number for security.",
+                "example": "55195*****000156"
+              },
+              "cardStatus": {
+                "type": "string",
+                "description": "The current status of the card.",
+                "example": "Active"
+              },
+              "mobileNumber": {
+                "type": "string",
+                "description": "The mobile number associated with the cardholder.",
+                "example": "923142280111"
+              },
+              "expiryDate": {
+                "type": "string",
+                "description": "The expiry date of the card in MMYY format.",
+                "example": "2207"
+              }
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "username",
+          "status"
+        ],
+        "discriminator": {
+          "propertyName": "userType",
+          "mapping": {
+            "admin": "#/components/schemas/Admin",
+            "basic": "#/components/schemas/Basic"
+          }
+        },
+        "properties": {
+          "username": {
+            "description": "The username associated with the user profile.",
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 32,
+            "pattern": "/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/",
+            "example": "John78"
+          },
+          "firstName": {
+            "description": "User's first name.",
+            "type": "string",
+            "minLength": 1,
+            "example": "Bunny"
+          },
+          "lastName": {
+            "description": "User's last name.",
+            "type": "string",
+            "minLength": 1,
+            "example": "Rabbit"
+          },
+          "email": {
+            "$ref": "#/components/schemas/Email"
+          },
+          "exampleObject": {
+            "description": "Example object to show an expanded schema.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExampleObject"
+              }
+            ]
+          },
+          "phone": {
+            "description": "User's phone number. Must be provided in international format.",
+            "type": "string",
+            "pattern": "/^\\+(?:[0-9]-?){6,14}[0-9]$/",
+            "maxLength": 32,
+            "example": "+4-0800-555-0110"
+          },
+          "profileUrls": {
+            "description": "The list of URLs to user's social media profiles. You must provide the URLs with the scheme (`http` or `https`).",
+            "type": "array",
+            "maxItems": 10,
+            "xml": {
+              "name": "profileUrl",
+              "wrapped": true
+            },
+            "items": {
+              "type": "string",
+              "format": "url"
+            },
+            "example": [
+              "https://twitter.com/example",
+              "https://instagram.com/example"
+            ]
+          },
+          "recursiveProperty": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
+          },
+          "status": {
+            "description": "Status of the user account.",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": [
+                "active",
+                "banned",
+                "inactive"
+              ]
+            }
+          },
+          "userid": {
+            "description": "Unique ID of the user.",
+            "externalDocs": {
+              "description": "Example of external documentation link",
+              "url": "https://example.com"
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserID"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "Admin": {
+        "description": "Example of a user profile with admin permissions. This type of user is also referred to as an **administrator**.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/User"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "userType": {
+                "type": "string",
+                "enum": [
+                  "admin",
+                  "basic"
+                ]
+              },
+              "adminDept": {
+                "type": "string",
+                "description": "One or more departments which the admin user controls.",
+                "default": "all",
+                "example": "finance",
+                "enum": [
+                  "all",
+                  "finance",
+                  "hiring",
+                  "development",
+                  "support",
+                  "contractors"
+                ]
+              }
+            },
+            "required": [
+              "adminDept",
+              "userType"
+            ]
+          }
+        ]
+      },
+      "Basic": {
+        "description": "Example of a user with basic (restricted) permissions. In total, there are 5 permission levels, but basic users can only use the first three.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/User"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "userType": {
+                "type": "string",
+                "enum": [
+                  "admin",
+                  "basic"
+                ]
+              },
+              "permissionId": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Identifier of the permission level assigned to the basic user.",
+                "default": 1,
+                "minimum": 1,
+                "maximum": 3
+              }
+            },
+            "required": [
+              "permissionId",
+              "userType"
+            ]
+          }
+        ]
+      },
+      "Email": {
+        "description": "User's email address.",
+        "type": "string",
+        "format": "email",
+        "example": "bunny.rabbit@example.com"
+      },
+      "UserID": {
+        "type": "integer",
+        "format": "int64",
+        "readOnly": true,
+        "example": 27
+      },
+      "ExampleObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "User ID.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserID"
+              }
+            ]
+          },
+          "name": {
+            "description": "Example name.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "example": "BunnyRabbit"
+          },
+          "container": {
+            "description": "Example object within an object.",
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "integer",
+                "description": "Example nullable value in a container object.",
+                "example": 22
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "General",
+      "tags": [
+        "User"
+      ]
+    },
+    {
+      "name": "Virtual Card",
+      "tags": [
+        "CardStatus",
+        "GetCardsByCustomer",
+        "CreateCard",
+        "GetCardDetails"
+      ]
+    }
+  ]
+}

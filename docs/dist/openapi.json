@@ -1,0 +1,1044 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.0",
+    "title": "Open Cms Api",
+    "license": {
+      "name": "Paysys Labs",
+      "url": "https://www.paysyslabs.com/"
+    },
+    "x-logo": {
+      "url": "dist\\logo.png",
+      "altText": "Paysys Labs"
+    },
+    "description": "OpenCMS is a product used for managing card systems. It is designed to be flexible, allowing clients to configure products according to their specific needs. Once the products are set up, clients can define the limits that apply to each product, as well as set fees for events and transactions based on the product’s niche. Major payment schemes like Visa, Mastercard, and UPI can be used to create the cards.\n"
+  },
+  "servers": [
+    {
+      "url": "https://www.paysyslabs.com/api/v1",
+      "description": "Production base URL"
+    },
+    {
+      "url": "https://example.com/api/v1",
+      "description": "Example base URL"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/changeCardStatus": {
+      "post": {
+        "tags": [
+          "CardStatus"
+        ],
+        "summary": "ChangeCardStatus",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "changecardstatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardResponce"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "cardId",
+                  "cnic",
+                  "customerCode",
+                  "status"
+                ],
+                "properties": {
+                  "cardId": {
+                    "type": "string",
+                    "description": "The cardId  which is required."
+                  },
+                  "cnic": {
+                    "type": "string",
+                    "description": "The cnic  which is required."
+                  },
+                  "customerCode": {
+                    "type": "string",
+                    "description": "The customerCode  which is required."
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "The status  which is required."
+                  }
+                }
+              },
+              "example": {
+                "cardId": "65",
+                "cnic": "4230194806487",
+                "customerCode": "0000000000000031",
+                "status": "01"
+              }
+            }
+          },
+          "description": "Example request payload containing RRN and STN fields.",
+          "required": true
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5500/cardApi/SetCardStatus' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"cardId\": \"65\",\n  \"cnic\": \"4230194806487\",\n  \"customerCode\": \"0000000000000031\",\n  \"status\": \"01\"\n}'"
+          }
+        ]
+      }
+    },
+    "/createCard": {
+      "post": {
+        "tags": [
+          "CreateCard"
+        ],
+        "summary": "CreateCard",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "createcard",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardResponce"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createCard"
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5099/api/v1/Card/createCard' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n  \"folioNumber\": \"000001111120\", \n  \"action\":\"01\", \n  \"cnic\": \"4230194806411\", \n  \"cardTitle\": \"Ahmed Khan\", \n  \"productCode\": \"06\", \n  \"cardExpiryDate\": \"2207\",\n  \"primaryCardcnic\": \"\",    \n  \"relation\": \"\", \n  \"nationalityCode\": \"1\", \n  \"firstname\": \"Samiullah\", \n  \"lastname\": \"Khan\", \n  \"companyName\": \"PaysysLabs\", \n  \"email\": \"saasc@xyz.com\", \n  \"motherMaideNname\": \"mother\", \n  \"fatherHusbandName\": \"father\", \n  \"city\": \"Karachi\", \n  \"dateOfBirth\": \"21-01-1994\", \n  \"profession\": \"Doctor\", \n  \"gender\": \"M\", \n  \"mailingAddress\": \"pasdasdasda echs block 6\", \n  \"homeAddress\": \"pechs block 5\", \n  \"officeAddress\": \"Smart Tower\", \n  \"homePhone\": \"\", \n  \"officePhone\": \"\", \n  \"cell\": \"03334422111\" \n}'"
+          }
+        ]
+      }
+    },
+    "/getCardsByCustomer": {
+      "post": {
+        "tags": [
+          "GetCardsByCustomer"
+        ],
+        "summary": "GetCardStatus",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "operationId": "getcardsbycustomer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCardByCustomer"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "cnic"
+                ],
+                "properties": {
+                  "cnic": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "cnic": "4230194806487"
+              }
+            }
+          },
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+          "required": true
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5099/api/v1/Card/createCard' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n  \"folioNumber\": \"000001111120\", \n  \"action\":\"01\", \n  \"cnic\": \"4230194806411\", \n  \"cardTitle\": \"Ahmed Khan\", \n  \"productCode\": \"06\", \n  \"cardExpiryDate\": \"2207\",\n  \"primaryCardcnic\": \"\",    \n  \"relation\": \"\", \n  \"nationalityCode\": \"1\", \n  \"firstname\": \"Samiullah\", \n  \"lastname\": \"Khan\", \n  \"companyName\": \"PaysysLabs\", \n  \"email\": \"saasc@xyz.com\", \n  \"motherMaideNname\": \"mother\", \n  \"fatherHusbandName\": \"father\", \n  \"city\": \"Karachi\", \n  \"dateOfBirth\": \"21-01-1994\", \n  \"profession\": \"Doctor\", \n  \"gender\": \"M\", \n  \"mailingAddress\": \"pasdasdasda echs block 6\", \n  \"homeAddress\": \"pechs block 5\", \n  \"officeAddress\": \"Smart Tower\", \n  \"homePhone\": \"\", \n  \"officePhone\": \"\", \n  \"cell\": \"03334422111\" \n}'"
+          }
+        ]
+      }
+    },
+    "/GetCardDetails": {
+      "post": {
+        "tags": [
+          "GetCardDetails"
+        ],
+        "summary": "GetCardDetails",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "getcarddetails",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getCardDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "description": "Example request payload containing CNIC and folio number fields.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "panNumber"
+                ],
+                "properties": {
+                  "panNumber": {
+                    "type": "string",
+                    "description": "The panNumber  which is required."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5500/cardApi/GetCardDetails' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"panNumber\": \"5519570700000156\"\n}'"
+          }
+        ]
+      }
+    },
+    "/GenerateCvc": {
+      "post": {
+        "tags": [
+          "GenerateCvc"
+        ],
+        "summary": "generatecvc",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "generatecvc",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/generateCvc-2"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/generateCvc"
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5099/api/v1/Card/generatecvc' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"folioNumber\": \"000001111120\",\n  \"cardId\": \"191\",\n  \"cnic\": \"4230194806411\",\n  \"customerCode\": \"0000000000000090\",\n  \"maskCardNumber\": \"53254*****000915\",\n  \"productcode\": \"07\"\n}'"
+          }
+        ]
+      }
+    },
+    "/CardTransactionLimits": {
+      "post": {
+        "tags": [
+          "CardTransactionLimits"
+        ],
+        "summary": "CardTransactionLimits",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "cardtransactionlimits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardTransactionLimits-responce"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "cardId",
+                  "cardtatus"
+                ],
+                "properties": {
+                  "cardId": {
+                    "type": "string",
+                    "description": "The cardId  which is required."
+                  },
+                  "cardtatus": {
+                    "type": "string",
+                    "description": "The status  which is required."
+                  }
+                }
+              },
+              "example": {
+                "cardId": "175",
+                "cardtatus": "ACTIVE"
+              }
+            }
+          },
+          "description": "Example request payload containing RRN and STN fields.",
+          "required": true
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5500/cardApi/SetCardStatus' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"cardId\":\"175\",\n  \"cardStatus\":\"ACTIVE\"\n}'"
+          }
+        ]
+      }
+    },
+    "/ChangeCardLimit": {
+      "post": {
+        "tags": [
+          "ChangeCardLimit"
+        ],
+        "summary": "Change Card Limit",
+        "description": "<a id=\"unlink-account-alias\"></a>\nIn this scenario customer want to unlink his/her selected account and assumption is customer is already linked the account with RAAST ID. \n\nThe reason for performing this operation may be any of following:  \n-\tCustomer want to link his/her another account with the current institution\n-\tCustomer want to link his/her another account with the other RAAST participants\n",
+        "operationId": "changeCardLimit",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "string",
+                      "description": "Response code indicating the status of the operation.",
+                      "example": "00"
+                    },
+                    "response_desc": {
+                      "type": "string",
+                      "description": "Detailed description of the response.",
+                      "example": "Processed OK"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeCardLimitBody"
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Curl",
+            "source": "curl --location 'http://10.0.70.68:5500/card/limits/change' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"cardNo\":\"xxxxxx\",\n  \"customerCnic\":\"41302-32123212\",\n  \"accountNo\":\"123456\",\n  \"cardExpiry\":\"2207\",\n  \"newLimit\":\"12345\"\n}'"
+          }
+        ]
+      }
+    }
+  },
+  "webhooks": {
+    "userInfo": {
+      "$ref": "webhooks/userInfo.yaml"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "main_auth": {
+        "description": "Example description text of the OAuth2 scheme.",
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:users": "read user info",
+              "write:users": "modify or remove users"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "description": "Example description text of the API key scheme.",
+        "type": "apiKey",
+        "in": "header",
+        "name": "api_key"
+      },
+      "basic_auth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "CardResponce": {
+        "type": "object",
+        "properties": {
+          "responceCode": {
+            "type": "number",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+            "example": 0
+          },
+          "responseDescription": {
+            "type": "string",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+            "example": "Processed Ok"
+          }
+        },
+        "required": [
+          "rrn",
+          "stan",
+          "txndate",
+          "txntime"
+        ]
+      },
+      "createCard": {
+        "type": "object",
+        "properties": {
+          "folioNumber": {
+            "type": "string",
+            "description": "The folio number which is required."
+          },
+          "action": {
+            "type": "string",
+            "description": "The action code which is required."
+          },
+          "cnic": {
+            "type": "string",
+            "description": "The CNIC which is required."
+          },
+          "cardTitle": {
+            "type": "string",
+            "description": "The title of the cardholder."
+          },
+          "productCode": {
+            "type": "string",
+            "description": "The product code associated with the card."
+          },
+          "cardExpiryDate": {
+            "type": "string",
+            "description": "The expiry date of the card in 'YYMM' format."
+          },
+          "primaryCardcnic": {
+            "type": "string",
+            "description": "The CNIC of the primary cardholder."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation of the cardholder to the primary cardholder."
+          },
+          "nationalityCode": {
+            "type": "string",
+            "description": "The nationality code of the cardholder."
+          },
+          "firstname": {
+            "type": "string",
+            "description": "The first name of the cardholder."
+          },
+          "lastname": {
+            "type": "string",
+            "description": "The last name of the cardholder."
+          },
+          "companyName": {
+            "type": "string",
+            "description": "The company name of the cardholder."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the cardholder."
+          },
+          "motherMaideNname": {
+            "type": "string",
+            "description": "The maiden name of the mother."
+          },
+          "fatherHusbandName": {
+            "type": "string",
+            "description": "The name of the father or husband."
+          },
+          "city": {
+            "type": "string",
+            "description": "The city of residence."
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "description": "The date of birth of the cardholder."
+          },
+          "profession": {
+            "type": "string",
+            "description": "The profession of the cardholder."
+          },
+          "gender": {
+            "type": "string",
+            "description": "The gender of the cardholder."
+          },
+          "mailingAddress": {
+            "type": "string",
+            "description": "The mailing address of the cardholder."
+          },
+          "homeAddress": {
+            "type": "string",
+            "description": "The home address of the cardholder."
+          },
+          "officeAddress": {
+            "type": "string",
+            "description": "The office address of the cardholder."
+          },
+          "homePhone": {
+            "type": "string",
+            "description": "The home phone number of the cardholder."
+          },
+          "officePhone": {
+            "type": "string",
+            "description": "The office phone number of the cardholder."
+          },
+          "cell": {
+            "type": "string",
+            "description": "The cell phone number of the cardholder."
+          }
+        },
+        "required": [
+          "folioNumber",
+          "action",
+          "cnic",
+          "cardTitle",
+          "productCode",
+          "cardExpiryDate",
+          "nationalityCode",
+          "firstname",
+          "lastname",
+          "email",
+          "city",
+          "dateOfBirth",
+          "profession",
+          "gender",
+          "mailingAddress",
+          "homeAddress",
+          "officeAddress",
+          "cell"
+        ]
+      },
+      "GetCardByCustomer": {
+        "type": "object",
+        "properties": {
+          "responceCode": {
+            "type": "number",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.",
+            "example": 0
+          },
+          "responseDescription": {
+            "type": "string",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.",
+            "example": "Processed Ok"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "customerCode": {
+                  "type": "string",
+                  "description": "Unique code representing the customer.",
+                  "example": "0000000000000003"
+                },
+                "cardNumber": {
+                  "type": "string",
+                  "description": "The number of the card.",
+                  "example": "2205820600000012"
+                },
+                "cardStatus": {
+                  "type": "string",
+                  "description": "The status of the card.",
+                  "example": "ACTIVE"
+                },
+                "cardName": {
+                  "type": "string",
+                  "description": "The name associated with the card.",
+                  "example": "SYED M. RAZA ABBAS"
+                },
+                "productName": {
+                  "type": "string",
+                  "description": "The name of the product linked to the card.",
+                  "example": "PayPak"
+                },
+                "productCode": {
+                  "type": "string",
+                  "description": "The code of the product.",
+                  "example": "06"
+                },
+                "cardStatusCode": {
+                  "type": "string",
+                  "description": "Code representing the status of the card.",
+                  "example": "01"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "description": "The expiry date of the card in MMYY format.",
+                  "example": "2504"
+                },
+                "cardId": {
+                  "type": "integer",
+                  "description": "Unique identifier for the card.",
+                  "example": 3
+                },
+                "accountNumber": {
+                  "type": "string",
+                  "description": "The account number associated with the card.",
+                  "example": "73264"
+                }
+              }
+            }
+          }
+        }
+      },
+      "getCardDetail": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "description": "The code representing the status of the response.",
+            "example": "00"
+          },
+          "responseDescription": {
+            "type": "string",
+            "description": "A description of the response status.",
+            "example": "Processed OK"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "createdDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date and time when the data was created.",
+                "example": "2022-07-01 12:07:30.77"
+              },
+              "cardName": {
+                "type": "string",
+                "description": "The name associated with the card.",
+                "example": "Test"
+              },
+              "maskedCardNumber": {
+                "type": "string",
+                "description": "The masked version of the card number for security.",
+                "example": "55195*****000156"
+              },
+              "cardStatus": {
+                "type": "string",
+                "description": "The current status of the card.",
+                "example": "Active"
+              },
+              "mobileNumber": {
+                "type": "string",
+                "description": "The mobile number associated with the cardholder.",
+                "example": "923142280111"
+              },
+              "expiryDate": {
+                "type": "string",
+                "description": "The expiry date of the card in MMYY format.",
+                "example": "2207"
+              }
+            }
+          }
+        }
+      },
+      "generateCvc": {
+        "type": "object",
+        "properties": {
+          "folioNumber": {
+            "type": "string",
+            "description": "Unique identifier for the folio.",
+            "example": "000001111120"
+          },
+          "cardId": {
+            "type": "string",
+            "description": "Card ID associated with the account.",
+            "example": "191"
+          },
+          "cnic": {
+            "type": "string",
+            "description": "Customer's national identification number.",
+            "example": "4230194806411"
+          },
+          "customerCode": {
+            "type": "string",
+            "description": "Unique code identifying the customer.",
+            "example": "0000000000000090"
+          },
+          "maskCardNumber": {
+            "type": "string",
+            "description": "Masked credit card number for security.",
+            "example": "53254*****000915"
+          },
+          "productcode": {
+            "type": "string",
+            "description": "Product code associated with the card.",
+            "example": "07"
+          }
+        },
+        "required": [
+          "folioNumber",
+          "cardId",
+          "cnic",
+          "customerCode",
+          "maskCardNumber",
+          "productcode"
+        ]
+      },
+      "generateCvc-2": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "example": "00",
+            "description": "Response code, where '00' means success"
+          },
+          "responseDescription": {
+            "type": "string",
+            "example": "Processed OK",
+            "description": "A brief description of the response"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "cardNumber": {
+                "type": "string",
+                "example": "5325442500000915",
+                "description": "Masked or full card number"
+              },
+              "cvc": {
+                "type": "string",
+                "example": null,
+                "description": "Card Verification Code (if available)"
+              },
+              "expiry": {
+                "type": "string",
+                "example": "2207",
+                "description": "Expiry date of the card in YYMM format"
+              }
+            }
+          }
+        }
+      },
+      "CardTransactionLimits-responce": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "example": "00",
+            "description": "Response code, where '00' means success"
+          },
+          "responseDescription": {
+            "type": "string",
+            "example": "Processed OK",
+            "description": "A brief description of the response"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "cardAccountDetail": {
+                "type": "object",
+                "properties": {
+                  "cardAttributes": {
+                    "type": "object",
+                    "properties": {
+                      "branchCode": {
+                        "type": "string",
+                        "example": null,
+                        "description": "Branch code (if available)"
+                      },
+                      "cardName": {
+                        "type": "string",
+                        "example": "AakashMatlani",
+                        "description": "The name on the card"
+                      },
+                      "product": {
+                        "type": "object",
+                        "properties": {
+                          "productName": {
+                            "type": "string",
+                            "example": "Virtual Debit Card",
+                            "description": "Name of the product associated with the card"
+                          }
+                        }
+                      },
+                      "cardStatus": {
+                        "type": "string",
+                        "example": "02",
+                        "description": "Status of the card (e.g., 02 for Active)"
+                      },
+                      "expiryDate": {
+                        "type": "string",
+                        "example": "2211",
+                        "description": "Expiry date of the card in YYMM format"
+                      },
+                      "cardNumber": {
+                        "type": "string",
+                        "example": "5325442500000865",
+                        "description": "Masked or full card number"
+                      },
+                      "primaryCardNumber": {
+                        "type": "string",
+                        "example": null,
+                        "description": "Primary card number (if available)"
+                      },
+                      "deliveryStatus": {
+                        "type": "string",
+                        "example": null,
+                        "description": "Delivery status of the card (if applicable)"
+                      },
+                      "internationalTransaction": {
+                        "type": "boolean",
+                        "example": true,
+                        "description": "Indicates if international transactions are enabled"
+                      },
+                      "issueDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-10-17 18:13:44.016",
+                        "description": "Date and time when the card was issued"
+                      },
+                      "internationalTransactionEndDate": {
+                        "type": "string",
+                        "example": null,
+                        "description": "End date for international transaction availability"
+                      },
+                      "internationalTransactionStartDate": {
+                        "type": "string",
+                        "example": null,
+                        "description": "Start date for international transaction availability"
+                      }
+                    }
+                  },
+                  "accountAttributes": {
+                    "type": "array",
+                    "description": "List of accounts associated with the card",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "accountNumber": {
+                          "type": "string",
+                          "example": "000001234567",
+                          "description": "Account number associated with the card"
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "Active",
+                          "description": "Status of the associated account"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "AakashMatlani",
+                          "description": "Title or name associated with the account"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "limits": {
+                "type": "array",
+                "description": "Transaction limits associated with the card",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "cardId": {
+                      "type": "integer",
+                      "example": 138,
+                      "description": "Card ID associated with the limits"
+                    },
+                    "availableLimit": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 150000,
+                      "description": "Available limit for the transaction"
+                    },
+                    "transactionName": {
+                      "type": "string",
+                      "example": "Withdrawal",
+                      "description": "Type of transaction (e.g., Withdrawal, POS Purchase, E-Commerce)"
+                    },
+                    "totalLimit": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 150000,
+                      "description": "Total limit for the transaction"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "responseCode",
+          "responseDescription",
+          "data"
+        ]
+      },
+      "ChangeCardLimitBody": {
+        "type": "object",
+        "properties": {
+          "cardNo": {
+            "type": "string",
+            "description": "Masked card number for security.",
+            "example": "xxxxxx"
+          },
+          "customerCnic": {
+            "type": "string",
+            "description": "Customer's national identification number in the format 'xxxxx-xxxxxxx-x'.",
+            "example": "41302-32123212"
+          },
+          "accountNo": {
+            "type": "string",
+            "description": "Account number associated with the card.",
+            "example": "123456"
+          },
+          "cardExpiry": {
+            "type": "string",
+            "description": "Card expiry date in the format 'YYMM'.",
+            "example": "2207"
+          },
+          "newLimit": {
+            "type": "number",
+            "description": "The new card limit to be set.",
+            "example": 12345
+          }
+        },
+        "required": [
+          "cardNo",
+          "customerCnic",
+          "accountNo",
+          "cardExpiry",
+          "newLimit"
+        ]
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "General",
+      "tags": [
+        "User"
+      ]
+    },
+    {
+      "name": "Card Request",
+      "tags": [
+        "CardStatus",
+        "GetCardsByCustomer",
+        "CreateCard",
+        "GenerateCvc",
+        "GetCardDetails",
+        "CardTransactionLimits",
+        "ChangeCardLimit"
+      ]
+    }
+  ]
+}
